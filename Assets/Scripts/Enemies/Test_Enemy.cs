@@ -6,6 +6,7 @@ using UnityEngine;
 public class Test_Enemy : MonoBehaviour
 {
     private Pathfinder pathfinder;
+    public int Health;
 
     // Start is called before the first frame update
     void Start()
