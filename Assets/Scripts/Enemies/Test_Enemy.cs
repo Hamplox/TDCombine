@@ -7,6 +7,8 @@ public class Test_Enemy : MonoBehaviour
 {
     private Pathfinder pathfinder;
     public int Health;
+    [SerializeField] private float speed;
+
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +19,7 @@ public class Test_Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(pathfinder.RunPathfinder())
+        if (pathfinder.RunPathfinder(speed))
         {
             Destroy(gameObject);
         }

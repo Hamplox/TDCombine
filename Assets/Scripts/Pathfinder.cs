@@ -4,22 +4,17 @@ using UnityEngine;
 
 public class Pathfinder : MonoBehaviour
 {
-    [SerializeField]
-    private List<Transform> path;
-    [SerializeField]
-    private float speed;
-
     private int currentNode = 1;
     private float distanceToNextNode;
 
+    private List<Transform> path = new List<Transform>();
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-
+        path = Path.paths;
     }
 
-    public bool RunPathfinder()
+    public bool RunPathfinder(float speed)
     {
         if (currentNode <= path.Count - 1)
         {
@@ -48,7 +43,7 @@ public class Pathfinder : MonoBehaviour
                
             }
 
-            if (isAtNode())
+            if (isAtNode(path))
             {
                 if (currentNode < path.Count - 1)
                     gameObject.transform.rotation = Quaternion.LookRotation(path[currentNode + 1].position - transform.position);
@@ -60,7 +55,7 @@ public class Pathfinder : MonoBehaviour
         {
             currentNode = path.Count - 1;
 
-            if (isAtNode())
+            if (isAtNode(path))
             {
                 return true;
             }
@@ -68,13 +63,7 @@ public class Pathfinder : MonoBehaviour
         return false;
     }
 
-    Vector3 GetCatmullRomPosition(float t, Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3)
-    {
-        // Catmull-Rom equation
-        return 0.5f * ((2 * p1) + (-p0 + p2) * t + (2 * p0 - 5 * p1 + 4 * p2 - p3) * t * t + (-p0 + 3 * p1 - 3 * p2 + p3) * t * t * t);
-    }
-
-    private bool isAtNode()
+    private bool isAtNode(List<Transform> path)
     {
         Vector2 currentPos = gameObject.transform.position;
         currentPos.y = gameObject.transform.position.z;
