@@ -3,12 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - GridCube
+  - Wall
+  - WayPoint
+  - StartWayPoint
+  - EndWayPoint
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Grid Cube
   - Water
   - UI
   - 

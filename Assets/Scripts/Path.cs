@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class Path : MonoBehaviour
+public class Path : MonoBehaviour 
 {
-    public static List<Transform> paths;
+    public List<Transform> paths = new List<Transform>();
 
     // Start is called before the first frame update
-    void Awake()
+    public void AddPath(Transform transform)
     {
-        paths = new List<Transform>(transform.childCount);
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            paths.Add(transform.GetChild(i));
-        }
+        paths.Add(transform);
+    }
+
+    public void Remove(Transform transform)
+    {
+        paths.Remove(transform);
     }
 }
