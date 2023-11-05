@@ -13,6 +13,7 @@ public class TowerScriptableObject : ScriptableObject
 {
     public GameObject TowerPrefab;
     public TowerType TowerType;
+    public Sprite TowerPortait;
     
     public float Damage = 1f;
     public float ProjectailSpeed = 1f;
@@ -29,6 +30,7 @@ public class TowerSOEditor : Editor
     private SerializedProperty Prefab;
     private SerializedProperty Damage;
     private SerializedProperty ProjectailSpeed;
+    private SerializedProperty Portrait;
 
     private TowerScriptableObject myTarget;
     private void OnEnable()
@@ -37,6 +39,7 @@ public class TowerSOEditor : Editor
         Prefab = serializedObject.FindProperty("TowerPrefab");
         Damage = serializedObject.FindProperty("Damage");
         ProjectailSpeed = serializedObject.FindProperty("ProjectailSpeed");
+        Portrait = serializedObject.FindProperty("TowerPortait");
 
         myTarget = target as TowerScriptableObject;
     }
@@ -49,6 +52,7 @@ public class TowerSOEditor : Editor
 
         EditorGUI.BeginChangeCheck();
         EditorGUILayout.PropertyField(TowerType);   
+        EditorGUILayout.PropertyField(Portrait);   
         EditorGUILayout.PropertyField(Damage);   
         EditorGUILayout.PropertyField(ProjectailSpeed);   
                
